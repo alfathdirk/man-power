@@ -1,0 +1,81 @@
+
+<?php use ROH\Util\Inflector; ?>
+
+<?php $__env->startSection('pagetitle'); ?>
+    <?php echo l('Create New {0}', Inflector::humanize(f('controller')->getClass())); ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('back'); ?>
+    <a href="<?php echo f('controller.url'); ?>" class="direct"><i class="xn xn-angle-left"></i> <?php echo l('Back'); ?></a>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('tabssearch'); ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('menu'); ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+    <form method="post" class="form contextual">
+        <div class="scroll scroll-navbar">
+            <?php $__env->startSection('fields'); ?>
+	            <?php if (!f('controller')->schema()['name']['hidden']): ?>
+	                <div class="row <?php echo (f('notification.message', 'name') AND $app->request->getMethod() !== 'GET') ? 'has-error' : ''; ?>">
+	                    <div class="span-3"><?php echo f('controller')->schema()['name']->label(); ?></div>
+	                    <div class="span-9"><?php echo $entry->format('name', 'input'); ?></div>
+	                    <span class="help-block"><?php echo f('notification.message', 'name'); ?></span>
+	                </div>
+	            <?php endif; ?>
+	            <?php if (!f('controller')->schema()['name']['hidden']): ?>
+	                <div class="row <?php echo (f('notification.message', 'client_id') AND $app->request->getMethod() !== 'GET') ? 'has-error' : ''; ?>">
+	                    <div class="span-3"><?php echo f('controller')->schema()['client_id']->label(); ?></div>
+	                    <div class="span-9"><?php echo $entry->format('client_id', 'input'); ?></div>
+	                    <span class="help-block"><?php echo f('notification.message', 'client_id'); ?></span>
+	                </div>
+	            <?php endif; ?>
+	            <?php if (!f('controller')->schema()['starttime']['hidden']): ?>
+	                <div class="row <?php echo (f('notification.message', 'starttime') AND $app->request->getMethod() !== 'GET') ? 'has-error' : ''; ?>">
+	                    <div class="span-3"><?php echo f('controller')->schema()['starttime']->label(); ?></div>
+	                    <div class="span-9"><?php echo $entry->format('starttime', 'input'); ?></div>
+	                    <span class="help-block"><?php echo f('notification.message', 'starttime'); ?></span>
+	                </div>
+	            <?php endif; ?>
+	            <?php if (!f('controller')->schema()['endtime']['hidden']): ?>
+	                <div class="row <?php echo (f('notification.message', 'endtime') AND $app->request->getMethod() !== 'GET') ? 'has-error' : ''; ?>">
+	                    <div class="span-3"><?php echo f('controller')->schema()['endtime']->label(); ?></div>
+	                    <div class="span-9"><?php echo $entry->format('endtime', 'input'); ?></div>
+	                    <span class="help-block"><?php echo f('notification.message', 'endtime'); ?></span>
+	                </div>
+	            <?php endif; ?>
+	            <?php if (!f('controller')->schema()['value']['hidden']): ?>
+	                <div class="row <?php echo (f('notification.message', 'value') AND $app->request->getMethod() !== 'GET') ? 'has-error' : ''; ?>">
+	                    <div class="span-3"><?php echo f('controller')->schema()['value']->label(); ?></div>
+	                    <div class="span-9"><?php echo $entry->format('value', 'input'); ?></div>
+	                    <span class="help-block"><?php echo f('notification.message', 'value'); ?></span>
+	                </div>
+	            <?php endif; ?>
+	            <?php if (!f('controller')->schema()['url_demo']['hidden']): ?>
+	                <div class="row <?php echo (f('notification.message', 'url_demo') AND $app->request->getMethod() !== 'GET') ? 'has-error' : ''; ?>">
+	                    <div class="span-3"><?php echo f('controller')->schema()['url_demo']->label(); ?></div>
+	                    <div class="span-9"><?php echo $entry->format('url_demo', 'input'); ?></div>
+	                    <span class="help-block"><?php echo f('notification.message', 'url_demo'); ?></span>
+	                </div>
+	            <?php endif; ?>
+            <?php echo $__env->yieldSection(); ?>
+        </div>
+
+        <?php $__env->startSection('contextual'); ?>
+            <nav class="navbar navbar-bottom row">
+                <div class="span-6">
+                    &nbsp;
+                </div>
+                <div class="span-6 align-right">
+                    <button type="reset" class="button button-outline"><i class="xn xn-refresh"></i><?php echo l('Reset'); ?></button>
+                    <button type="submit" class="button success solid"><i class="xn xn-save"></i><?php echo l('Save'); ?></button>
+                </div>
+            </nav>
+        <?php echo $__env->yieldSection(); ?>
+    </form>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>
+            <?php $__env->startSection('pagetitle'); ?>
+                <?php echo f('page.title', 'Man Power'); ?>
+            <?php echo $__env->yieldSection(); ?>
+        </title>
+        <meta name="description" content="<?php echo f('page.title', 'Man Power'); ?>">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link href="<?php echo Theme::base('vendor/naked2-theme/css/normalize.css') ?>" rel="stylesheet">
+        <link href="<?php echo Theme::base('vendor/naked2-theme/css/naked.css') ?>" rel="stylesheet">
+        <link href="<?php echo Theme::base('vendor/naked2-theme/css/awesome.css') ?>" rel="stylesheet">
+        <link href="<?php echo Theme::base('vendor/naked2-theme/css/jacket.css') ?>" rel="stylesheet">
+
+        <!-- FIXME reekoheek put it here in order to be used by schema component before all page rendered -->
+        <script src="<?php echo Theme::base('vendor/naked2-theme/js/vendor/jquery.js') ?>"></script>
+        <script src="<?php echo Theme::base('vendor/naked2-theme/js/vendor/modernizr.js') ?>"></script>
+
+        <script src="<?php echo Theme::base('vendor/naked2-theme/js/vendor/fixedheadertable.js') ?>"></script>
+        <script src="<?php echo Theme::base('vendor/naked2-theme/js/tshirt.js') ?>"></script>
+
+        <!-- Tshirt -->
+        <script src="<?php echo Theme::base('vendor/naked2-theme/js/tshirt/TableContext.js') ?>"></script>
+        <script src="<?php echo Theme::base('vendor/naked2-theme/js/tshirt/MenuHighlighter.js') ?>"></script>
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="<?php echo Theme::base('vendor/naked2-theme/js/vendor/html5shiv.js') ?>"></script>
+            <script src="<?php echo Theme::base('vendor/naked2-theme/js/vendor/respond.js') ?>"></script>
+        <![endif]-->
+    </head>
+    <?php $__env->startSection('skeleton'); ?>
+        <body class="has-sidebar">
+            <!--[if lt IE 7]>
+                <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+            <![endif]-->
+
+            <?php $__env->startSection('notification'); ?>
+                <?php echo f('notification.show'); ?>
+            <?php echo $__env->yieldSection(); ?>
+
+            <?php $__env->startSection('page'); ?>
+            <?php echo $__env->yieldSection(); ?>
+
+            <script src="<?php echo Theme::base('vendor/naked2-theme/js/tshirt.js') ?>"></script>
+        </body>
+    <?php echo $__env->yieldSection(); ?>
+</html>

@@ -1,0 +1,79 @@
+
+<?php $__env->startSection('sidebar'); ?>
+	<script type="text/javascript" src="<?php echo e(Theme::base('vendor/platform/platform.js')); ?>"></script>>
+	<link rel="import" href="<?php echo e(Theme::base('vendor/pants-tablefield/pants-tablefield.html')); ?>">
+
+    <aside class="sidebar">
+        <nav class="navbar row">
+            <div class="span-12 navsearch">
+                <input type="text" tabindex="-1" placeholder="<?php echo l('Search'); ?> <?php echo l('Menu'); ?> ...">
+            </div>
+        </nav>
+	    <div class="scroll scroll-navbar">
+			<ul class="listview">
+				<?php if(f('auth.allowed', '/project') || f('auth.allowed', '/client') ): ?>
+				<li class="list-group-container">
+					<h5><?php echo l('Input'); ?></h5>
+					<ul class="list-group">
+						<?php if(f('auth.allowed', '/project')): ?>
+							<li class="plain"><a href="<?php echo URL::site('/project'); ?>"><i class="xn xn-briefcase xn-lg"></i> <span><?php echo l('Project'); ?></span></a></li>
+						<?php endif; ?>
+						<?php if(f('auth.allowed', '/client')): ?>
+							<li class="plain"><a href="<?php echo URL::site('/client'); ?>"><i class="xn xn-gift xn-lg"></i> <span><?php echo l('Client'); ?></span></a></li>
+						<?php endif; ?>
+						<?php if(f('auth.allowed', '/participant')): ?>
+							<li class="plain"><a href="<?php echo URL::site('/participant'); ?>"><i class="xn xn-group xn-lg"></i> <span><?php echo l('Project Participant'); ?></span></a></li>
+						<?php endif; ?>
+					</ul>
+				</li>
+				<?php endif; ?>
+
+				<li class="list-group-container">
+					<h5><?php echo l('Report'); ?></h5>
+					<ul class="list-group">
+						<li class="plain"><a href="#"><i class="xn xn-briefcase xn-lg"></i> <span><?php echo l('Project Summary'); ?></span></a></li>
+						<li class="plain"><a href="#"><i class="xn xn-paper-plane xn-lg"></i> <span><?php echo l('Project Performace'); ?></span></a></li>
+						<li class="plain"><a href="#"><i class="xn xn-calendar xn-lg"></i> <span><?php echo l('Member On Project'); ?></span></a></li>
+					</ul>
+				</li>
+
+				<?php if(f('auth.allowed', '/user') || f('auth.allowed', '/role') || f('auth.allowed', '/merchant_industry') || f('auth.allowed', '/org_type')): ?>
+				<li class="list-group-container">
+					<h5><?php echo l('System'); ?></h5>
+					<ul class="list-group">
+						<?php if(f('auth.allowed', '/user')): ?>
+                        <li class="plain"><a href="<?php echo URL::site('/user'); ?>"><i class="xn xn-user xn-lg"></i> <span><?php echo l('User'); ?></span></a></li>
+                        <?php endif; ?>
+                        <?php if(f('auth.allowed', '/role')): ?>
+                        <li class="plain"><a href="<?php echo URL::site('/role'); ?> "><i class="xn xn-group xn-lg"></i> <span><?php echo l('Role'); ?></span></a></li>
+                        <?php endif; ?>
+                        
+					</ul>
+				</li>
+				<?php endif; ?>
+			</ul>
+		</div>
+    </aside>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('usermenu'); ?>
+	<ul class="flat topbar">
+		<li class="user">
+			<a href="#">
+				<span class="avatar"><i class="xn xn-user xn-lg"></i></span>
+				<span class="name">Admin <i class="xn xn-angle-down"></i></span>
+			</a>
+			<ul class="sub animated">
+				<li><a href="#"><?php echo l('Profile'); ?></a></li>
+				<li><a href="#"><?php echo l('Settings'); ?></a></li>
+				<li><a href="<?php echo URL::site('/logout'); ?>"><?php echo l('Logout'); ?></a></li>
+			</ul>
+		</li>
+		<li class="notification">
+			<a href="#"><span class="badge">2</span></a>
+		</li>
+	</ul>
+<?php $__env->stopSection(); ?>
+
+
+<?php echo $__env->make('skeleton2', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

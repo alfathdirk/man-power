@@ -1,0 +1,151 @@
+
+<?php use ROH\Util\Inflector; ?>
+
+<?php
+$schema = array();
+foreach (f('controller')->schema() as $key => $field) {
+    if ($field['list-column']) {
+        $schema[$key] = $field;
+    }
+}
+?>
+
+<?php $__env->startSection('pagetitle'); ?>
+   <?php echo Inflector::pluralize(Inflector::humanize(f('controller')->getClass())); ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('back'); ?>
+    <a href="<?php echo f('controller.url', '/null/create'); ?>" class="button solid"><i class="xn xn-plus"></i><?php echo l('New'); ?></a>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('tabssearch'); ?>
+    <input type="text" placeholder="<?php echo l('Search {0}', array(Inflector::pluralize(Inflector::humanize(f('controller')->getClass())))); ?> ..." value="<?php echo e($app->request->get('!match')); ?>">
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('menusearch'); ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('menudefault'); ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+    <div class="">
+        <div class="scroll scroll-navbar">
+            <div class="table-container">
+                <?php if(! $entries->count(true)): ?>
+                <table class="table nowrap stripped hover empty">
+                <?php else: ?>
+                <table class="table nowrap stripped hover">
+                <?php endif; ?>
+                    <thead>
+                        <?php $__env->startSection('table.head'); ?>
+                        <tr>
+                            <?php if (count($schema)): ?>
+                                <?php foreach ($schema as $key => $field): ?>
+                                    <th>
+                                        <a href="<?php echo e(f('controller.url', '?!sort['.$key.']='.(@$_GET['!sort'][$key] == 1 ? -1 : 1))); ?>">
+                                            <?php echo $field['label']; ?>
+                                        </a>
+                                    </th>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <th>
+                                    Data
+                                </th>
+                            <?php endif; ?>
+                        </tr>
+                        <?php echo $__env->yieldSection(); ?>
+                    </thead>
+                    <tbody>
+                        <?php $__env->startSection('table.filter'); ?>
+                            <!-- <form method="get" id="search-form">
+                            <tr>
+                                <?php $i = 0 ?>
+                                <?php foreach ($schema as $key => $field): ?>
+                                    <?php if($i++ === 4): ?>
+                                        <?php break ?>
+                                    <?php endif; ?>
+                                    <?php if(! $field['hidden']): ?>
+                                        <th>
+                                        <div class="form-group">
+                                            <input type="text" placeholder="<?php echo $field['label']; ?>" name="<?php echo $key; ?>" value="<?php echo $app->request->get($key.'!like'); ?>">
+                                        </div>
+                                        </th>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                                <td><input type="submit" style="display:none"></td>
+                            </tr>
+                            </form>
+                            <script>
+                            $('#search-form').on('submit', function(evt) {
+                                evt.preventDefault();
+                                var qs = [];
+                                $(this).serializeArray().forEach(function(a) {
+                                    if (a.value) {
+                                        qs.push(a.name + '!like=' + a.value);
+                                    }
+                                });
+                                location.href = (qs.length) ? location.pathname + '?' + qs.join('&') : location.pathname;
+                            });
+                            </script> -->
+                        <?php echo $__env->yieldSection(); ?>
+
+                        <?php $__env->startSection('table.body'); ?>
+                            <?php if(! $entries->count(true)): ?>
+                                <tr>
+                                    <td colspan="<?php echo count($schema); ?>" class="empty"><i class="xn xn-file-o xn-5x"></i><br />Data still empty.<br />Click <a href="<?php echo f('controller.url', '/null/create'); ?>"><i class="xn xn-plus"></i> New</a> to add new data.</td>
+                                </tr>
+                            <?php else: ?>
+                                <?php foreach ($entries as $entry): ?>
+                                    <?php $i = 0 ?>
+                                    <tr>
+                                        <?php if (count($schema)): ?>
+                                            <?php foreach ($schema as $name => $field): ?>
+                                                <td>
+                                                    <?php if($i++ === 0): ?>
+                                                        <a href="<?php echo f('controller.url', '/'.$entry['$id']); ?>">
+                                                            <?php echo $field->format('plain', $entry[$name], $entry); ?>
+                                                        </a>
+                                                    <?php else: ?>
+                                                    <?php try { echo $entry->format($name); } catch(\Exception $e) { echo 'xxx'; var_dump($e); } ?>
+
+                                                    <?php endif; ?>
+                                                </td>
+                                            <?php endforeach; ?>
+                                        <?php else: ?>
+                                            <td>
+                                                <a href="<?php echo f('controller.url', '/'.$entry['$id']); ?>">
+                                                    <?php echo $entry->format(); ?>
+                                                </a>
+                                            </td>
+                                        <?php endif; ?>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        <?php echo $__env->yieldSection(); ?>
+                    </tbody>
+                </table>
+                <?php $__env->startSection('pagination'); ?>
+                <ul class="pagination centered">
+                   <li class="arrow-first"><a href="#"> |< </a></li>
+                   <li class="prev"><a href="#"> < </a></li>
+                   <li class="active"><a href="#">1</a></li>
+                   <li><a href="#">2</a></li>
+                   <li><a href="#">3</a></li>
+                   <li class="unavailable"><a href="#">…</a></li>
+                   <li><a href="#">8</a></li>
+                   <li><a href="#">9</a></li>
+                   <li><a href="#">10</a></li>
+                   <li class="next"><a href="#"> > </a></li>
+                   <li class="arrow-last"><a href="#"> >| </a></li>
+                </ul>
+                <?php echo $__env->yieldSection(); ?>
+            </div>
+        </div>
+
+        <?php $__env->startSection('contextual'); ?>
+        <?php echo $__env->yieldSection(); ?>
+    </div>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

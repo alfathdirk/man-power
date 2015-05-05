@@ -1,0 +1,91 @@
+
+<?php $__env->startSection('skeleton'); ?>
+    <body class="has-sidebar">
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <?php $__env->startSection('notification'); ?>
+            <?php echo f('notification.show'); ?>
+        <?php echo $__env->yieldSection(); ?>
+
+        <?php $__env->startSection('page'); ?>
+            <?php $__env->startSection('navbar'); ?>
+                <nav class="nav-menu navbar-menu">
+                    <h1>
+                        <?php $__env->startSection('applogo'); ?>
+                            <a href="<?php echo URL::base(); ?>">X</a>
+                        <?php echo $__env->yieldSection(); ?>
+                    </h1>
+                    <title>
+                        <?php $__env->startSection('pagetitle'); ?>
+                            <?php echo f('page.title', 'Man Power'); ?>
+                        <?php echo $__env->yieldSection(); ?>
+                    </title>
+                    <div class="pull-right">
+                        <?php $__env->startSection('usermenu'); ?>
+                            &nbsp;
+                        <?php echo $__env->yieldSection(); ?>
+                    </div>
+                </nav>
+            <?php echo $__env->yieldSection(); ?>
+
+            <?php $__env->startSection('sidebar'); ?>
+            <?php echo $__env->yieldSection(); ?>
+
+            <main>
+                <?php $__env->startSection('body'); ?>
+                    <?php $__env->startSection('actions'); ?>
+                        <nav class="navbar row">
+                            <div class="span-3 navback">
+                                <?php $__env->startSection('back'); ?>
+                                    &nbsp;
+                                <?php echo $__env->yieldSection(); ?>
+                            </div>
+                            <div class="span-6 navsearch">
+                                <?php $__env->startSection('tabssearch'); ?>
+                                    <?php $__env->startSection('search'); ?>
+                                        <input id="searchbar" type="text" placeholder="<?php echo l('Search Example'); ?>" value="">
+                                    <?php echo $__env->yieldSection(); ?>
+                                    <?php $__env->startSection('tabs'); ?>
+                                        <ul id="tabbar" class="button-group round centered">
+                                            <li><a href="" class="button"><?php echo l('Tab Example'); ?></a></li>
+                                        </ul>
+                                    <?php echo $__env->yieldSection(); ?>
+                                <?php echo $__env->yieldSection(); ?>
+                            </div>
+                            <div class="span-3 navmenu">
+                                <?php $__env->startSection('menu'); ?>
+                                    <ul class="menu">
+                                        <?php $__env->startSection('menusearch'); ?>
+                                            <li><a href="#" class="button button-outline button-gray" onclick="$('#tabbar, #searchbar').toggle (0); return false;"><i class="xn xn-search"></i> Search</a></li>
+                                        <?php echo $__env->yieldSection(); ?>
+                                        <?php $__env->startSection('menudefault'); ?>
+                                            <li><a href="<?php echo f('controller.url', '/null/create'); ?>" class="button button-outline"><i class="xn xn-plus"></i><?php echo l('New'); ?></a></li>
+                                        <?php echo $__env->yieldSection(); ?>
+                                        <?php $__env->startSection('menumore'); ?>
+                                            <li class="collapsible">
+                                                <a href="#"><i class="xn xn-ellipsis-v xn-lg"></i></a>
+                                                <ul id="menumore">
+                                                    <?php $__env->startSection('menumorecontent'); ?>
+                                                        <li><a href="javascript:location.reload(false);" class="button button-outline"><i class="xn xn-refresh"></i><?php echo l('Refresh Listing'); ?></a></li>
+                                                    <?php echo $__env->yieldSection(); ?>
+                                                </ul>
+                                            </li>
+                                        <?php echo $__env->yieldSection(); ?>
+                                    </ul>
+                                <?php echo $__env->yieldSection(); ?>
+                            </div>
+                        </nav>
+                    <?php echo $__env->yieldSection(); ?>
+
+                    <?php $__env->startSection('content'); ?>
+                        &nbsp;
+                    <?php echo $__env->yieldSection(); ?>
+                <?php echo $__env->yieldSection(); ?>
+            </main>
+        <?php echo $__env->yieldSection(); ?>
+    </body>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('skeleton', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

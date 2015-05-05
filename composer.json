@@ -1,0 +1,36 @@
+{
+    "name": "xinix/man-power",
+    "description": "Project Management for Xinix",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ganesha",
+            "email": "reekoheek@gmail.com"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/reekoheek/bono-blade"
+        },
+        {
+            "type": "vcs",
+            "url": "ssh://tig@xinix.co.id:22033/mcoin/naked2-theme.git"
+        }
+    ],
+    "require": {
+        "xinix-technology/bono": "dev-master",
+        "xinix-technology/norm": "dev-master",
+        "xinix-technology/migrate": "~0.1.0",
+        "reekoheek/bono-auth": "~0.2.0",
+        "xinix-technology/naked2-theme": "dev-master",
+        "krisanalfa/blade-theme": "dev-master",
+        "krisanalfa/bono-blade": "dev-master",
+        "reekoheek/bootstrap-theme": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "App": "src/"
+        }
+    }
+}
